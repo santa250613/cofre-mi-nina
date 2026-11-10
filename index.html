@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Para mi niña 💘</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html { background:#05000c; }
+  html,body { height:100%; overflow:hidden; }
+  body {
+    background: radial-gradient(ellipse at bottom, #1b0033 0%, #0a0014 55%, #05000c 100%);
+    background: radial-gradient(ellipse at bottom, #1b0033 0%, #0a0014 55%, #05000c 100%) fixed;
+    font-family: 'Georgia', serif;
+    color:#ffe9f0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:0; width:100%;
+  }
+  #stars { position:fixed; inset:0; z-index:0; pointer-events:none; }
+  #fx    { position:fixed; inset:0; z-index:2; pointer-events:none; }
+
+  /* ---- Caja que late ---- */
+  #escena { z-index:3; display:flex; flex-direction:column; align-items:center; gap:26px; transition:opacity .5s; }
+  .titulo {
+    font-size: 1.9em; letter-spacing:1px;
+    background: linear-gradient(90deg,#ffb3c9,#ff8fb3,#ffd9c2);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    text-shadow:0 0 22px rgba(255,92,138,.3);
+    animation: aparecer 1.6s ease both;
+  }
+  @keyframes aparecer { from{opacity:0; transform:translateY(14px);} to{opacity:1;} }
+  .caja {
+    position:relative; width:172px; height:150px; cursor:pointer; user-select:none;
+    animation: latir 1.1s ease-in-out infinite;
+    filter: drop-shadow(0 0 30px rgba(255,92,138,.5)) drop-shadow(0 14px 22px rgba(0,0,0,.5));
+  }
+  @keyframes latir { 0%,100%{ transform:scale(1);} 12%{transform:scale(1.09);} 24%{transform:scale(1);} 36%{transform:scale(1.06);} 48%{transform:scale(1);} }
+  .caja:active { transform:scale(.95); }
+  .caja .tapa {
+    position:absolute; top:0; left:0; width:100%; height:46px;
+    background: linear-gradient(180deg,#ff77a1 0%,#ff5c8a 55%,#d63c66 100%);
+    border-radius:86px 86px 6px 6px;
+    box-shadow: inset 0 -6px 12px rgba(0,0,0,.25), inset 0 4px 8px rgba(255,255,255,.22);
+  }
+  .caja .tapa::after {
+    content:''; position:absolute; top:7px; left:14%; width:72%; height:10px;
+    border-radius:50%; background:rgba(255,255,255,.28); filter:blur(2px);
+  }
+  .caja .cinta {
+    position:absolute; top:0; left:calc(50% - 12px); width:24px; height:100%;
+    background: linear-gradient(90deg,#ff4d79,#ff9ecb 45%,#c22e55);
+    z-index:2; border-radius:4px;
+  }
+  .caja .lazo-h {
+    position:absolute; top:-12px; left:calc(50% - 22px); width:44px; height:28px; z-index:2;
+    background: radial-gradient(circle at 30% 30%, #ffd1e3, #ff9ecb 60%, #ff5c8a);
+    border-radius:50% 50% 50% 50%; box-shadow:0 2px 6px rgba(0,0,0,.3);
+  }
+  .caja .lazo-h::before, .caja .lazo-h::after {
+    content:''; position:absolute; top:0; width:20px; height:24px;
+    border:3px solid #ff9ecb; border-radius:50% 50% 0 0; background:#ffd1e3;
+  }
+  .caja .lazo-h::before { left:0; transform:rotate(-14deg); }
+  .caja .lazo-h::after  { right:0; transform:rotate(14deg); }
+  .caja .base {
+    position:absolute; top:46px; left:0; width:100%; height:104px;
+    background: linear-gradient(180deg,#f2557e 0%,#d63c66 45%,#a82747 100%);
+    border-radius:6px 6px 14px 14px;
+    box-shadow: inset 0 8px 12px rgba(0,0,0,.22), inset 0 -10px 16px rgba(0,0,0,.35);
+  }
+  .caja .base::after {
+    content:''; position:absolute; top:0; left:6%; width:88%; height:2px;
+    background:rgba(255,255,255,.25); border-radius:2px;
+  }
+  .caja .cerradura {
+    position:absolute; top:38px; left:calc(50% - 11px); width:22px; height:26px; z-index:3;
+    background: linear-gradient(180deg,#ffe9a8,#e0b04a 55%,#b07d24);
+    border-radius:8px 8px 5px 5px;
+    box-shadow:0 0 12px rgba(255,233,168,.7), inset 0 -3px 5px rgba(0,0,0,.3);
+  }
+  .caja .cerradura::after {
+    content:''; position:absolute; top:8px; left:calc(50% - 2px); width:4px; height:9px;
+    background:#5a2d0a; border-radius:2px; box-shadow:0 3px 0 #5a2d0a;
+  }
+  .caja .corazon-frente {
+    position:absolute; top:86px; left:calc(50% - 19px); font-size:40px; z-index:2;
+    animation: latir 1.1s ease-in-out infinite;
+    filter: drop-shadow(0 0 8px rgba(255,92,138,.8));
+  }
+  .hint { color:#c9a3b8; font-size:.95em; font-style:italic; animation: pulso 2s infinite; }
+  /* ---- Peonías ---- */
+  .peonia { display:inline-block; vertical-align:middle; animation: latir 1.6s ease-in-out infinite; filter: drop-shadow(0 0 7px rgba(255,143,179,.55)); }
+  .peonia.g { width:34px; height:34px; }
+  .peonia.m { width:20px; height:20px; margin:0 4px; transform-origin:center; }
+  @keyframes pulso { 50%{opacity:.45;} }
+
+  /* ---- Nota ---- */
+  #nota  { z-index:3; display:none; flex-direction:column; align-items:center; gap:28px; max-width:430px; }
+  .nota-card {
+    background: rgba(255,255,255,.06);
+    border:1px solid rgba(255,158,203,.35);
+    border-radius:22px; padding:30px 24px;
+    box-shadow:0 0 40px rgba(255,92,138,.18);
+    font-size:1.18em; line-height:1.65; color:#ffdce8;
+    backdrop-filter: blur(6px);
+    animation: aparecer .9s ease both;
+  }
+  .corazon-grande { font-size:46px; animation: latir 1.3s infinite; }
+  .btn {
+    border:1.5px solid rgba(255,158,203,.65); cursor:pointer;
+    background: rgba(255,92,138,.14);
+    color:#ffd1e3; font-weight:bold; font-size:1.05em;
+    padding:14px 32px; border-radius:999px; font-family:inherit;
+    box-shadow:0 0 22px rgba(255,92,138,.25), inset 0 0 14px rgba(255,158,203,.08);
+    backdrop-filter: blur(6px);
+    transition: transform .15s, box-shadow .3s;
+  }
+  .btn:hover { box-shadow:0 0 30px rgba(255,92,138,.4), inset 0 0 18px rgba(255,158,203,.12); }
+  .btn:active { transform:scale(.94); }
+  .firma { color:#c9a3b8; font-size:.9em; margin-top:6px; }
+  #subbtn { display:none; font-size:.55em; opacity:.8; margin-top:2px; letter-spacing:.3px; }
+  #bajo { display:none; color:#ff9ecb; font-style:italic; font-size:1.05em; animation: aparecer .8s ease both; }
+  #cerrado { z-index:3; display:none; flex-direction:column; align-items:center; gap:22px; max-width:400px; animation: aparecer .8s ease both; }
+  #cerrado .candado { font-size:52px; }
+  #cerrado .msg { font-size:1.15em; line-height:1.6; color:#ffdce8; }
+  #cont { font-variant-numeric: tabular-nums; font-size:1.4em; color:#ffb3d9; letter-spacing:2px; }
+  #cont-lbl { color:#c9a3b8; font-size:.9em; }
+</style>
+</head>
+<body>
+<canvas id="stars"></canvas>
+<canvas id="fx"></canvas>
+
+<!-- Escena 1: caja latiendo -->
+<div id="escena">
+  <div class="titulo"><span class="peonia m" data-peonia></span>Para <span style="font-style:italic">mi niña</span> 💘</div>
+  <div class="caja" id="caja" role="button" aria-label="Ábreme">
+    <div class="tapa"></div>
+    <div class="cinta"></div>
+    <div class="lazo-h"></div>
+    <div class="base"></div>
+    <div class="cerradura"></div>
+    <div class="corazon-frente"><span class="peonia" data-peonia style="width:44px;height:44px"></span></div>
+  </div>
+  <div class="hint">tócala para abrirla…</div>
+</div>
+
+<!-- Escena 2: nota -->
+<div id="nota">
+  <div class="corazon-grande">💗</div>
+  <div id="bajo">Bajo tu propia responsabilidad 😘</div>
+  <div class="nota-card" id="texto"></div>
+  <button class="btn" id="otra">Ábreme otra vez 🎁<span id="subbtn">Bajo tu propia responsabilidad 😘</span></button>
+  <div class="firma">Sebas <span class="peonia m" data-peonia></span> 💘</div>
+</div>
+
+<!-- Escena 3: cerrado por hoy -->
+<div id="cerrado">
+  <div class="candado">🔒</div>
+  <div class="msg">El cofre está cerrado por hoy, <span class="peonia m" data-peonia style="width:26px;height:26px"></span> mi niña.<br>Vuelve mañana… no seas ansiosa 😏</div>
+  <div id="cont">00:00:00</div>
+  <div id="cont-lbl">para volver a abrirlo</div>
+  <div class="firma">Sebas <span class="peonia m" data-peonia></span> 💘</div>
+</div>
+
+<script>
+/* ---------- Notas ---------- */
+const NOTAS = [
+  "Me pierdo a propósito cuando hablas y me miras… por eso me encanta verte y escucharte.",
+  "No dices con palabras lo que sientes, lo dices con cada detalle. Y yo lo noto todo.",
+  "Si hoy el día se pone pesado, recuerda que eres capaz de muchas cosas. Te mando muchos besos.",
+  "Espero tengas o estés teniendo un buen día, así como lo son esos ojitos hermosos que me encantan.",
+  "Respira, si estás estresada o tienes un día pesado. Sonríe. Eres capaz de más de lo que crees, y yo te lo confirmo.",
+  "No hago magia, pero con este mensaje logré que por 10 segundos solo pienses en mí. 😏",
+  "Me encanta que seas directa: en lo que me dices y en lo que me haces sentir.",
+  "Te mando muchos besos y abrazos para que me pienses y te acuerdes de mí.",
+  "Que hoy te salgan las cosas a la primera, y si no, piensa en mí para sacarte esa sonrisa hermosa que tienes.",
+  "Hoy tuviste suerte: me debes un beso cuando me veas. Lo cobro con intereses. 😏",
+  "Se me ocurrió de repente: me debes una foto de lo bonita que estés sonriendo ahora mismo.",
+  "Llegó tu turno: me debes un plan sorpresa juntos. Yo elijo la fecha, tú el secreto.",
+  "Este es un mandato especial: me debes decir la primera palabra que se te vino con mi nombre (me la vas a contar en persona 😏).",
+  "Juego especial: provócame, me gané una o las fotos que tú quieras. Y unos besos que te los cobro igual. 😏🔥"
+];
+let ultima = -1;
+function notaAzar(){
+  let i;
+  do { i = Math.floor(Math.random()*NOTAS.length); } while(i===ultima && NOTAS.length>1);
+  ultima = i;
+  return NOTAS[i];
+}
+
+/* ---------- Estrellas de fondo ---------- */
+/* ---------- Canvas ---------- */
+const s = document.getElementById('stars'), sx = s.getContext('2d');
+const f = document.getElementById('fx'), fx = f.getContext('2d');
+const P = []; /* partículas */
+function tam(){ s.width=innerWidth; s.height=innerHeight; f.width=innerWidth; f.height=innerHeight; }
+const estrellas = Array.from({length:260}, ()=>({x:Math.random(),y:Math.random(),r:Math.random()*1.7+.2,f:Math.random()*6.28,v:.4+Math.random()*1.2,big:Math.random()<.12}));
+function dibStars(t){
+  sx.clearRect(0,0,s.width,s.height);
+  for(const e of estrellas){    const a = .25 + .55*Math.abs(Math.sin(t/1400*e.v + e.f));
+    sx.globalAlpha=a; sx.fillStyle='#ffe9f0';
+    if(e.big){ sx.shadowColor='#ffb3d9'; sx.shadowBlur=6; } else { sx.shadowBlur=0; }
+    sx.beginPath(); sx.arc(e.x*s.width,e.y*s.height,e.r*(e.big?2:1),0,6.28); sx.fill();
+  }
+  /* corazones flotando de fondo */
+  for(const h of FLOT){
+    h.y -= h.v; if(h.y < -30){ h.y = s.height + 30; h.x = Math.random()*s.width; }
+    const der = Math.sin(t/900 + h.f) * 14;
+    const fa = h.a * (0.55 + 0.45*Math.abs(Math.sin(t/1100+h.f)));
+    formaCorazon(sx, h.x + der, h.y, h.r, h.c, fa);
+  }
+  sx.shadowBlur=0; dibPetalos(t); sx.globalAlpha=1; requestAnimationFrame(dibStars);
+}
+const FLOT = Array.from({length:16}, ()=>({x:Math.random(),y:Math.random()*innerHeight+innerHeight*0.2,r:7+Math.random()*13,v:.25+Math.random()*.55,f:Math.random()*6.28,a:.10+Math.random()*.14,c:['#ff8fb3','#ffc7d9','#ffd9c2'][Math.floor(Math.random()*3)]}));
+/* ---- Pétalos de peonía cayendo ---- */
+const PETALOS = Array.from({length:34}, ()=>({x:Math.random(),y:Math.random(),r:4+Math.random()*7,v:.35+Math.random()*.75,f:Math.random()*6.28,rot:Math.random()*6.28,vr:(Math.random()-.5)*.003,c:['#ff8fb3','#ffc7d9','#ffd9c2','#ff9eb8'][Math.floor(Math.random()*4)],a:.14+Math.random()*.20}));
+function dibPetalos(t){
+  for(const p of PETALOS){
+    p.y += p.v/s.height*1.6; p.rot += p.vr;
+    if(p.y > 1.05){ p.y = -0.05; p.x = Math.random(); }
+    const der = Math.sin(t/1000 + p.f) * 22;
+    sx.save(); sx.translate(p.x*s.width + der, p.y*s.height); sx.rotate(p.rot);
+    sx.globalAlpha = p.a; sx.fillStyle = p.c;
+    sx.beginPath(); sx.ellipse(0,0,p.r,p.r*0.55,0,0,6.28); sx.fill(); sx.restore();
+  }
+  sx.globalAlpha = 1;
+}
+tam(); addEventListener('resize',tam); requestAnimationFrame(dibStars);
+
+/* ---------- Fuegos de corazones ---------- */
+const COLORES = ['#ff8fb3','#ffc7d9','#ffd9c2','#ff9eb8','#ffb3c9'];
+function formaCorazon(ctx,x,y,r,c,a){
+  ctx.save(); ctx.translate(x,y); ctx.scale(r/16,r/16);
+  ctx.beginPath();
+  ctx.moveTo(0,5);
+  ctx.bezierCurveTo(-14,-6,-7,-16,0,-8);
+  ctx.bezierCurveTo(7,-16,14,-6,0,5);
+  ctx.closePath();
+  ctx.globalAlpha=a; ctx.fillStyle=c; ctx.fill(); ctx.restore();
+}
+function explotar(x,y){
+  const n = 26 + Math.floor(Math.random()*14);
+  const c1 = COLORES[Math.floor(Math.random()*COLORES.length)];
+  const c2 = COLORES[Math.floor(Math.random()*COLORES.length)];
+  for(let i=0;i<n;i++){
+    const ang = (6.283/n)*i + Math.random()*.3;
+    const vel = 2.2 + Math.random()*3.4;
+    P.push({x,y,vx:Math.cos(ang)*vel,vy:Math.sin(ang)*vel,
+            r:4+Math.random()*7, vida:1, dec:.010+Math.random()*.012,
+            c: Math.random()<.5?c1:c2});
+  }
+}
+function loopFx(){
+  fx.clearRect(0,0,f.width,f.height);
+  for(let i=P.length-1;i>=0;i--){
+    const p=P[i];
+    p.x+=p.vx; p.y+=p.vy; p.vy+=.055; p.vx*=.985; p.vy*=.985;
+    p.vida-=p.dec;
+    if(p.vida<=0){ P.splice(i,1); continue; }
+    formaCorazon(fx,p.x,p.y,p.r*(.4+.6*p.vida),p.c,Math.min(1,p.vida*1.4));
+  }
+  requestAnimationFrame(loopFx);
+}
+loopFx();
+function show(){
+  explotar(f.width*.5, f.height*.42);
+  setTimeout(()=>explotar(f.width*.3, f.height*.3), 350);
+  setTimeout(()=>explotar(f.width*.68, f.height*.34), 650);
+}
+</script>
+<script>
+/* ---------- Interacción con límite diario ---------- */
+const FRASES = NOTAS.slice(0, 9);   /* tiernas / buen día / coqueteo */
+const RETOS  = NOTAS.slice(9);      /* retos y juegos */
+const CLAVE = 'cofre_apertura_v8';
+
+function estadoHoy(){
+  const dia = new Date().toDateString();
+  try {
+    const e = JSON.parse(localStorage.getItem(CLAVE) || 'null');
+    if (e && e.dia === dia) return e;
+  } catch(_){}
+  return { dia: dia, n: 0 };
+}
+function guardar(e){ try{ localStorage.setItem(CLAVE, JSON.stringify(e)); }catch(_){} }
+
+const escena=document.getElementById('escena'),
+      nota=document.getElementById('nota'),
+      cerrado=document.getElementById('cerrado'),
+      texto=document.getElementById('texto'),
+      bajo=document.getElementById('bajo'),
+      btnOtra=document.getElementById('otra');
+let contTimer = null;
+
+function reinicioMedianoche(){
+  clearInterval(contTimer);
+  contTimer = setInterval(()=>{
+    const ahora = new Date();
+    const fin = new Date(ahora); fin.setHours(24,0,0,0);
+    const s = Math.max(0, Math.floor((fin-ahora)/1000));
+    const hh = String(Math.floor(s/3600)).padStart(2,'0');
+    const mm = String(Math.floor(s%3600/60)).padStart(2,'0');
+    const ss = String(s%60).padStart(2,'0');
+    document.getElementById('cont').textContent = `${hh}:${mm}:${ss}`;
+  }, 1000);
+}
+
+function abrir(){
+  const e = estadoHoy();
+  if (e.n >= 2){
+    show();
+    setTimeout(()=>{
+      escena.style.display='none';
+      nota.style.display='none';
+      cerrado.style.display='flex';
+      reinicioMedianoche();
+      show();
+    }, 420);
+    return;
+  }
+  show();
+  texto.style.animation='none'; void texto.offsetWidth; texto.style.animation='';
+  if (e.n === 0){            /* 1ª: frase bonita */
+    texto.textContent = FRASES[Math.floor(Math.random()*FRASES.length)];
+    document.getElementById('subbtn').style.display = 'block';
+  } else {                   /* 2ª: reto */
+    texto.textContent = RETOS[Math.floor(Math.random()*RETOS.length)];
+    document.getElementById('subbtn').style.display = 'none';
+  }
+  bajo.style.display = 'none';
+  e.n++; guardar(e);
+  setTimeout(()=>{
+    escena.style.display='none';
+    cerrado.style.display='none';
+    nota.style.display='flex';
+    show();
+  }, 420);
+}
+document.getElementById('caja').addEventListener('click', abrir);
+btnOtra.addEventListener('click', ()=>{ abrir(); });
+
+/* ---------- Peonía SVG (rellena todos los slots) ---------- */
+const SVG_PEONIA = `<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+ <g fill="#ff8fb3">
+  <ellipse cx="20" cy="8" rx="6" ry="8"/><ellipse cx="20" cy="32" rx="6" ry="8"/>
+  <ellipse cx="8" cy="20" rx="8" ry="6"/><ellipse cx="32" cy="20" rx="8" ry="6"/>
+  <ellipse cx="11" cy="11" rx="6.5" ry="4.5" transform="rotate(45 11 11)"/>
+  <ellipse cx="29" cy="11" rx="6.5" ry="4.5" transform="rotate(-45 29 11)"/>
+  <ellipse cx="11" cy="29" rx="6.5" ry="4.5" transform="rotate(-45 11 29)"/>
+  <ellipse cx="29" cy="29" rx="6.5" ry="4.5" transform="rotate(45 29 29)"/>
+ </g>
+ <g fill="#ffc7d9" transform="translate(20 20)">
+  <ellipse cx="0" cy="-6" rx="4.5" ry="5.5"/><ellipse cx="5.7" cy="-1.8" rx="4.5" ry="5.5" transform="rotate(72)"/>
+  <ellipse cx="3.5" cy="4.9" rx="4.5" ry="5.5" transform="rotate(144)"/>
+  <ellipse cx="-3.5" cy="4.9" rx="4.5" ry="5.5" transform="rotate(-144)"/>
+  <ellipse cx="-5.7" cy="-1.8" rx="4.5" ry="5.5" transform="rotate(-72)"/>
+ </g>
+ <circle cx="20" cy="20" r="3.4" fill="#ffd9c2"/>
+ <circle cx="20" cy="20" r="1.6" fill="#fff3e0"/>
+</svg>`;
+document.querySelectorAll('[data-peonia]').forEach(el=>{ el.innerHTML = SVG_PEONIA; });
+</script>
+</body>
+</html>
