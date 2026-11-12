@@ -162,18 +162,14 @@
 <canvas id="stars"></canvas>
 <canvas id="fx"></canvas>
 
-<!-- Regalo de hoy: collage (solo visible hasta medianoche del 10-nov) -->
+<!-- Regalo de hoy: foto del recuerdo (solo visible hasta medianoche del 12-nov) -->
 <button id="btnRegalo">🎁 Regalo de hoy</button>
 <div id="regalo">
-  <div class="titulo2">De los ratos que nos robamos hoy 🌿<br>y de por qué son mi favorito</div>
-  <div class="collage">
-    <img src="assets/fotos-hoy/beso.jpg"    alt="Nosotros">
-    <img src="assets/fotos-hoy/selfie.jpg"  alt="Selfie">
-    <img src="assets/fotos-hoy/manos.jpg"   alt="Manos">
-    <img src="assets/fotos-hoy/bloques.jpg" alt="Los bloques">
-    <img src="assets/fotos-hoy/hamaca.jpg"  alt="Hamaca (esa te la inventé yo)">
+  <div class="titulo2">Otro recuerdo hermoso<br>que quiero tener junto a ti</div>
+  <div style="max-width:400px;width:100%;">
+    <img src="assets/fotos-hoy/recuerdo.jpg" alt="Nosotros" style="width:100%;border-radius:16px;border:1px solid rgba(255,160,180,.25);box-shadow:0 8px 30px rgba(0,0,0,.5);display:block;">
   </div>
-  <div id="msgRegalo">Gracias por el día de hoy.<br><br>Y recuerda que siempre estoy aquí para cuando te sientas abrumada. Es para borrarte ese recuerdo maluco que tienes y pienses en mí 💘</div>
+  <div id="msgRegalo">Otro recuerdo hermoso para tener junto a ti, me encantas 🥰</div>
   <div class="firma">Sebas <span class="peonia m" data-peonia></span> 💘</div>
   <button id="btnVolver">← Volver al cofre</button>
 </div>
@@ -423,7 +419,7 @@ document.querySelectorAll('[data-peonia]').forEach(el=>{ el.innerHTML = SVG_PEON
 <script>
 /* ---------- Regalo de hoy: solo 10-nov-2026, al año siguiente o a la mañana de mañana desaparece ---------- */
 (function(){
-  const fin = new Date('2026-11-11T00:00:00-05:00');
+  const fin = new Date('2026-11-13T00:00:00-05:00');
   if (new Date() < fin){
     const b = document.getElementById('btnRegalo'), r = document.getElementById('regalo');
     b.style.display = 'block';
